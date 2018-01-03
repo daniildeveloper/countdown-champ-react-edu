@@ -11,9 +11,30 @@ class Clock extends Component {
       hours: 0,
       seconds: 0,
     }
+
+  }
+
+  getTimeUntil (deadline) {
+    // calculate deadline time last
+    const time = Date.parse(deadline) - Date.parse(new Date());
+    console.log('deadline-time', time)
+    // calculate props for state
+    const seconds = Math.floor((time / 1000) % 60);
+    const minutes = Math.floor((time / 1000 / 60) % 60);
+    const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+    const days = Math.floor((time / (1000 * 60 * 60 * 24)));
+
+    // update state
+    this.setState({
+      days: days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+    })
   }
 
   render () {
+    // this.getTimeUntil(this.props.deadline);
     return (
       <div>
         <div className="Clock-days" >{this.state.days} days</div>
