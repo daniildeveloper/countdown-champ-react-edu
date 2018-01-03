@@ -43,13 +43,21 @@ class Clock extends Component {
     })
   }
 
+  leading0(num) {
+    if (num < 10) {
+      return '0' + num;
+    } else {
+      return num
+    }
+  }
+
   render () {
     return (
       <div>
         <div className="Clock-days" >{this.state.days} days</div>
-        <div className="Clock-hours" >{this.state.hours} hours</div>
-        <div className="Clock-minutes" >{this.state.minutes} minutes</div>
-        <div className="Clock-seconds" >{this.state.seconds} seconds</div>
+        <div className="Clock-hours" >{this.leading0(this.state.hours)} hours</div>
+        <div className="Clock-minutes" >{this.leading0(this.state.minutes)} minutes</div>
+        <div className="Clock-seconds" >{this.leading0(this.state.seconds)} seconds</div>
       </div>
     );
   }
